@@ -60,3 +60,32 @@ datetime = DateTime.from_naive!(naive_datetime, "Etc/UTC")
 
 IO.puts("datetime = #{datetime}")
 datetime.day |> IO.puts()
+
+# Patterns and pattern matching
+# Left side is a pattern right side is an expr
+# {pattern = expr}
+# Good for de-structuring!
+person = {"John", 25}
+
+{name, age} = person
+
+{name, age} = {"John", 25}
+
+name |> IO.puts()
+age |> IO.puts()
+
+{date, time} = :calendar.local_time()
+
+1 = 1
+
+rect = {:rect, 10, 20}
+{:rect, width, height} = rect
+
+IO.puts("width: #{width}, height: #{height}!")
+
+# {:ok, contents} = File.read("example.txt")
+
+{_date, time} = :calendar.local_time()
+
+{hour, _, _} = time
+IO.puts("Hour: #{hour}")
