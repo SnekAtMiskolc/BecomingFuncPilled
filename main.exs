@@ -44,3 +44,9 @@ users |> User.put()
 lambda = &(&1 + &2 + 2)
 
 lambda.(1, 2) |> IO.puts()
+
+keys = MapSet.new([:a, :b, :c])
+MapSet.member?(keys, :c) |> IO.puts()
+
+date = ~D[2023-05-02]
+date.year |> IO.puts()
