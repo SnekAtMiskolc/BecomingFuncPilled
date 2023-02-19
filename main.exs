@@ -18,6 +18,7 @@ defmodule User do
   @spec create(String.t(), String.t(), String.t(), String.t()) :: [%User{}]
   def create(name, age, name2, age2) do
     IO.puts("Created new user with name: " <> name)
+    IO.puts("Created new user with name: " <> name2)
     [%User{name: name, age: age}, %User{name: name2, age: age2}]
   end
 
@@ -33,7 +34,7 @@ defmodule User do
   end
 end
 
-users = User.create("John Doe", 24, "Peter Griffin", 45)
+users = User.create("Nagy Pista", 18, "Peter Griffin", 45)
 user = [User.create("John Doe", 24)]
 users = users ++ user
 users |> User.put()
@@ -98,3 +99,16 @@ x = 10
 [1, s, t] = [1, 2, 3]
 [head | _] = [1, 2, 3, 4, 5]
 IO.puts("Head: #{head}")
+
+# Min is head after the sort which in this case is: 1
+[min | _] = Enum.sort([3, 5, 2, 1])
+
+IO.puts("Min: #{min}")
+
+%{name: name, age: age} = %{age: 25, name: "John"}
+# the left side does not need to contain all keys in case of Map data structures.
+%{age: age} = %{name: "John", age: 25}
+
+IO.puts("Age: #{age}")
+
+# Resource: https://piped.video/watch?v=V_4-Iswp3II&t=811
