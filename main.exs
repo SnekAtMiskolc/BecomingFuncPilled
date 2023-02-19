@@ -32,7 +32,7 @@ defmodule User do
 
 end
 
-user = User.create("John Doe", 24)
 users = User.create("John Doe", 24, "Peter Griffin", 45)
+user = [User.create("John Doe", 24)]
+users = users ++ user
 users |> User.put
-user |> User.put
