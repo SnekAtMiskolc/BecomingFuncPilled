@@ -50,3 +50,9 @@ MapSet.member?(keys, :c) |> IO.puts()
 
 date = ~D[2023-05-02]
 date.year |> IO.puts()
+date.day |> IO.puts()
+
+time = ~T[12:53:32.000123]
+naive_datetime = ~N[2023-12-23 08:32:12.000111]
+
+naive_datetime.year |> IO.puts()
