@@ -7,7 +7,7 @@ end
 Say.hello_world("John")
 
 defmodule User do
-  defstruct name: "Jonny", age: 2333
+  defstruct name: "", age: 0
 
   @spec create(String.t, String.t) :: %User{}
   def create(name, age) do
@@ -22,4 +22,5 @@ defmodule User do
 
 end
 
-User.create("John Doe", 24) |> User.put
+user = User.create("John Doe", 24)
+user |> User.put
