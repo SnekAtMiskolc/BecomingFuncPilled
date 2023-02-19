@@ -56,3 +56,7 @@ time = ~T[12:53:32.000123]
 naive_datetime = ~N[2023-12-23 08:32:12.000111]
 
 naive_datetime.year |> IO.puts()
+datetime = DateTime.from_naive!(naive_datetime, "Etc/UTC")
+
+IO.puts("datetime = #{datetime}")
+datetime.day |> IO.puts()
