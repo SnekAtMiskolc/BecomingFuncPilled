@@ -85,7 +85,16 @@ IO.puts("width: #{width}, height: #{height}!")
 
 # {:ok, contents} = File.read("example.txt")
 
-{_date, time} = :calendar.local_time()
+{_date, {hour, _, _}} = :calendar.local_time()
 
-{hour, _, _} = time
 IO.puts("Hour: #{hour}")
+
+x = 10
+# Pin operator > "^" pin a match it cannot be reassigned. It's for not binding to a new variable!
+{^x, _} = {10, "hello"}
+# fails
+# {^x, _} = {11, "hello"}
+
+[1, s, t] = [1, 2, 3]
+[head | _] = [1, 2, 3, 4, 5]
+IO.puts("Head: #{head}")
