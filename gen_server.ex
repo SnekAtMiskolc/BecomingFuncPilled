@@ -1,27 +1,49 @@
-defmodule KeyValueStore do
+defmodule ShoppingList do
   use GenServer
 
-  def start_link(name \\ __MODULE__, initial_state \\ %{}) do
-    GenServer.start_link(__MODULE__, initial_state, name: name)
+  # Client
+  def start_link do
+    GenServer.start_link(__MODULE__, [])
   end
 
-  def get(name, key) do
-    GenServer.call(name, {:get, key})
+  def add(pid, item) do
+    GenServer.cast(pid, item)
   end
 
-  def put(name, key, value) do
-    GenServer.cast(name, {:put, key, value})
+  def view(pid) do
+    GenServer.call(pid, :view)
   end
 
-  def init(initial_state) do
-    {:ok, initial_state}
+  def remove(pid, item) do
+    GenServer.cast(pid, {:remove, item})
   end
 
-  def handle_call({:get, key}, _from, state) do
-    {:reply, Map.get(state, key), state}
+  def stop(pid) do
+    GenServer.stop(pid, :normal, :infinity)
   end
 
-  def handle_cast({:put, key, value}, state) do
-    {:noreply, Map.put(state, key, value)}
+  # Server
+  def handle_cast({:remove, item}, list) do
+    updated_list = Enum.reject(list, fn i -> i == item end)
+    {:noreply, updated_list}
+  end
+
+  def handle_cast(item, list) do
+    updated_list = [item | list]
+    {:noreply, updated_list}
+  end
+
+  def handle_call(:view, _from, list) do
+    {:reply, list, list}
+  end
+
+  def init(list) do
+    {:ok, list}
+  end
+
+  def terminate(_reason, list) do
+    IO.puts("We are all done shopping.")
+    IO.inspect(list)
+    :ok
   end
 end
